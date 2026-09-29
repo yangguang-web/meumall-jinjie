@@ -154,6 +154,28 @@ box-shadow:0 4px 16px rgba(79,122,42,.25);opacity:0;pointer-events:none;transiti
 .day-h{flex-direction:column;gap:6px}
 .day-h .date{margin-left:0}
 }
+
+/* ===== 打卡鼓励弹窗 ===== */
+.cheer{
+  position:fixed;left:50%;bottom:120px;transform:translate(-50%,80px);
+  z-index:200;pointer-events:none;opacity:0;
+  display:flex;align-items:center;gap:14px;
+  background:#fff;border:2px solid var(--brand-l);border-radius:18px;
+  padding:12px 22px 12px 12px;box-shadow:0 18px 50px rgba(47,82,24,.22);
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .35s;
+}
+.cheer.show{opacity:1;transform:translate(-50%,0)}
+.cheer.big{transform:translate(-50%,40px) scale(.85)}
+.cheer.big.show{transform:translate(-50%,0) scale(1)}
+.cheer img{width:64px;height:64px;border-radius:14px;object-fit:cover;flex:none;
+  animation:cheerPop .5s cubic-bezier(.2,.9,.3,1.4) both}
+@keyframes cheerPop{0%{transform:scale(.4) rotate(-10deg);opacity:0}60%{transform:scale(1.15) rotate(4deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+.cheer .ct{font-size:14px;font-weight:700;color:var(--brand-d);line-height:1.5;max-width:240px}
+.cheer .ct .sub{display:block;font-size:12px;font-weight:500;color:var(--ink-3);margin-top:2px}
+.cheer .confetti{position:absolute;top:-6px;left:10px;font-size:16px;pointer-events:none}
+.cheer .confetti span{position:absolute;animation:confetti 1.1s ease-out both}
+@keyframes confetti{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(-38px) rotate(240deg);opacity:0}}
+
 </style>
 </head>
 <body>
@@ -409,6 +431,13 @@ box-shadow:0 4px 16px rgba(79,122,42,.25);opacity:0;pointer-events:none;transiti
 
 <button class="backtop" id="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
+<!-- 打卡鼓励弹窗 -->
+<div class="cheer" id="cheer">
+  <div class="confetti" id="cheer-confetti"></div>
+  <img id="cheer-img" src="assets/midoo-good.png" alt="米多多鼓励">
+  <div class="ct" id="cheer-text">太棒啦！</div>
+</div>
+
 <script>
 /* ===== 打卡进度（数量动态） ===== */
 const dayEls = document.querySelectorAll('.day');
@@ -440,7 +469,8 @@ function renderProgress(){
   });
 }
 function toggleDay(btn, day){
-  if(doneSet.has(day)){
+  const wasDone = doneSet.has(day);
+  if(wasDone){
     doneSet.delete(day);
     localStorage.setItem('meumall-guide-day-'+day, '0');
   } else {
@@ -448,8 +478,46 @@ function toggleDay(btn, day){
     localStorage.setItem('meumall-guide-day-'+day, '1');
   }
   renderProgress();
+  if(!wasDone) showCheer(day);
 }
 renderProgress();
+
+/* ===== 打卡鼓励弹窗 ===== */
+const cheerTexts = [
+  '太棒啦！又解锁一关 ✨','米多多给你点赞 👍','继续加油，离目标更近啦 🎯',
+  '进步看得见，冲鸭 🚀','今天的你也超棒 💪','节奏很稳，继续保持 🌿'
+];
+const cheerFinal = '🎉 全部完成！你是金牌销冠！';
+function showCheer(day){
+  const cheer = document.getElementById('cheer');
+  const img = document.getElementById('cheer-img');
+  const text = document.getElementById('cheer-text');
+  const confetti = document.getElementById('cheer-confetti');
+  const allDone = doneSet.size === TOTAL;
+  // 全部完成时换成销冠形象 + 大字版
+  if(allDone){
+    img.src = 'assets/midoo-clap.png';
+    text.innerHTML = cheerFinal + '<span class="sub">9 天全部打卡，米多多为你鼓掌 🏆</span>';
+    cheer.classList.add('big');
+  } else {
+    img.src = 'assets/midoo-good.png';
+    text.innerHTML = 'Day ' + day + ' 完成！<span class="sub">' + cheerTexts[(day-1) % cheerTexts.length] + '</span>';
+    cheer.classList.remove('big');
+  }
+  // 撒花
+  confetti.innerHTML = '';
+  const emojis = ['🎉','✨','⭐','🎊','💚','🌿'];
+  for(let i=0;i<6;i++){
+    const s = document.createElement('span');
+    s.textContent = emojis[i % emojis.length];
+    s.style.left = (i*26 + Math.random()*10) + 'px';
+    s.style.animationDelay = (i*0.08) + 's';
+    confetti.appendChild(s);
+  }
+  cheer.classList.add('show');
+  clearTimeout(cheer._t);
+  cheer._t = setTimeout(()=> cheer.classList.remove('show'), 2000);
+}
 
 /* ===== 导航高亮 + 返回顶部 ===== */
 const ids = ['map','download','days','redline'];
