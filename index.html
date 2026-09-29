@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会客厅物料进阶指南 · 9 天学习路径</title>
+<meta name="description" content="MeuMall 会客厅物料进阶指南：9 天学习路径，从认识你到被信任，跟着物料一步步进阶">
+<style>
+  :root{
+    --green:#B0D360;
+    --green-deep:#7FA03C;
+    --ink:#1A1A1A;
+    --blue:#A3CCDA;
+    --blue-deep:#6E9DB0;
+    --paper:#F5F5F2;
+    --card:#FFFFFF;
+    --line:rgba(26,26,26,.12);
+    --muted:#6B6B66;
+    --radius:18px;
+    --shadow:0 10px 40px rgba(26,26,26,.06);
+    --serif:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+    --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);background:var(--paper);color:var(--ink);
+    line-height:1.75;-webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--green);color:var(--ink)}
+
+  /* ===== 顶部导航 ===== */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(245,245,242,.9);backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:1080px;margin:0 auto;padding:10px 20px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .brand{
+    font-family:var(--serif);font-weight:700;font-size:15px;letter-spacing:.04em;
+    display:flex;align-items:center;gap:8px;white-space:nowrap;
+  }
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--green);display:inline-block;flex:none}
+  .topnav{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+  .topnav::-webkit-scrollbar{display:none}
+  .topnav a{
+    text-decoration:none;color:var(--muted);font-size:13px;font-weight:500;
+    padding:6px 12px;border-radius:99px;white-space:nowrap;transition:.25s;
+  }
+  .topnav a:hover{color:var(--ink);background:rgba(176,211,96,.18)}
+  .topnav a.active{color:var(--ink);background:var(--green)}
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:132px 20px 70px;position:relative;overflow:hidden;
+    background:
+      radial-gradient(1100px 480px at 88% -12%, rgba(163,204,218,.38), transparent 60%),
+      radial-gradient(900px 420px at -8% 22%, rgba(176,211,96,.3), transparent 55%),
+      var(--paper);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(rgba(26,26,26,.05) 1px, transparent 1px);
+    background-size:26px 26px;
+    mask-image:linear-gradient(to bottom, rgba(0,0,0,.5), transparent 70%);
+    -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,.5), transparent 70%);
+  }
+  .hero-inner{max-width:1080px;margin:0 auto;position:relative}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--green-deep);
+    background:rgba(176,211,96,.16);border:1px solid rgba(176,211,96,.4);
+    padding:7px 16px;border-radius:99px;margin-bottom:24px;
+  }
+  .hero h1{
+    font-family:var(--serif);font-size:clamp(38px,6.6vw,64px);font-weight:800;
+    line-height:1.16;letter-spacing:.02em;margin-bottom:16px;
+  }
+  .hero h1 .accent{
+    color:transparent;background:linear-gradient(100deg,var(--green-deep),var(--green) 55%,var(--blue-deep));
+    -webkit-background-clip:text;background-clip:text;
+  }
+  .hero .sub{font-size:clamp(16px,2.4vw,19px);color:var(--muted);max-width:580px;margin-bottom:30px}
+  .hero .path{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+  .hero .path span{
+    font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:99px;
+    background:var(--card);border:1px solid var(--line);box-shadow:0 2px 8px rgba(26,26,26,.04);
+  }
+  .hero .path span b{color:var(--green-deep)}
+
+  /* 进度条 */
+  .progress-wrap{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;box-shadow:var(--shadow);max-width:760px;
+  }
+  .progress-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+  .progress-head .t{font-size:13px;font-weight:700;letter-spacing:.06em}
+  .progress-head .p{font-size:13px;font-weight:800;color:var(--green-deep);font-family:var(--serif)}
+  .bar{height:10px;background:var(--paper);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+  .bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--green-deep),var(--green));border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+
+  /* ===== 阶段地图 ===== */
+  .map{max-width:1080px;margin:-20px auto 0;padding:0 20px;position:relative;z-index:2}
+  .map-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:760px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+  .map-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .map-card .stg{
+    position:absolute;top:0;left:0;right:0;height:4px;
+  }
+  .map-card .phase{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:6px}
+  .map-card h4{font-family:var(--serif);font-size:16px;font-weight:800;margin-bottom:4px}
+  .map-card p{font-size:12px;color:var(--muted);line-height:1.6}
+
+  /* ===== 板块 ===== */
+  section.block{padding:72px 20px;max-width:1080px;margin:0 auto}
+  .sec-head{margin-bottom:36px;max-width:760px}
+  .sec-head .tag{
+    display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;
+    letter-spacing:.14em;color:var(--green-deep);margin-bottom:12px;
+  }
+  .sec-head .tag::before{content:"";width:26px;height:2px;background:var(--green);border-radius:2px}
+  .sec-head h2{font-family:var(--serif);font-size:clamp(26px,4vw,36px);font-weight:800;line-height:1.3;margin-bottom:10px}
+  .sec-head p{color:var(--muted);font-size:14.5px}
+
+  /* ===== 9 天卡片 ===== */
+  .days{display:grid;gap:14px}
+  .day{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+    transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s;
+  }
+  .day:hover{transform:translateY(-2px);box-shadow:0 14px 44px rgba(26,26,26,.09)}
+  .day::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px}
+  .day.stg-account::before{background:var(--green)}
+  .day.stg-cogni::before{background:var(--green-deep)}
+  .day.stg-attract::before{background:var(--blue)}
+  .day.stg-trust::before{background:var(--blue-deep)}
+
+  .day-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+  .day-badge{
+    font-family:var(--serif);font-weight:800;font-size:14px;letter-spacing:.05em;
+    background:var(--ink);color:#fff;padding:5px 14px;border-radius:99px;white-space:nowrap;
+  }
+  .day-tag{
+    font-size:12px;font-weight:700;padding:4px 12px;border-radius:99px;letter-spacing:.06em;
+  }
+  .tag-account{background:rgba(176,211,96,.2);color:var(--green-deep)}
+  .tag-cogni{background:rgba(127,160,60,.14);color:var(--green-deep)}
+  .tag-attract{background:rgba(163,204,218,.28);color:var(--blue-deep)}
+  .tag-trust{background:rgba(110,157,176,.18);color:var(--blue-deep)}
+  .day-title{font-family:var(--serif);font-size:19px;font-weight:800;margin-bottom:4px;width:100%}
+  .day-desc{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{
+    background:var(--paper);border-radius:12px;padding:13px 15px;border:1px solid rgba(26,26,26,.06);
+  }
+  .step .sn{font-size:11px;font-weight:800;color:var(--green-deep);letter-spacing:.08em;display:block;margin-bottom:4px}
+  .step .st{font-size:13px;font-weight:700;display:block;margin-bottom:3px}
+  .step .sd{font-size:12px;color:var(--muted);line-height:1.65}
+
+  .day-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+  .quote{
+    font-family:var(--serif);font-size:14px;font-weight:700;color:var(--green-deep);
+    border-left:3px solid var(--green);padding-left:12px;flex:1;min-width:220px;
+  }
+  .day .warn{
+    font-size:12.5px;color:#4A6B78;background:rgba(163,204,218,.14);
+    border:1px dashed rgba(110,157,176,.45);border-radius:12px;padding:11px 14px;
+    margin-bottom:14px;line-height:1.7;
+  }
+  .day .warn b{color:var(--blue-deep)}
+  .day .dl{
+    font-size:12.5px;color:var(--muted);background:var(--paper);border-radius:10px;
+    padding:9px 13px;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;
+  }
+  .day .dl b{color:var(--ink)}
+
+  /* 打卡 */
+  .checkbtn{
+    font-size:13px;font-weight:700;padding:9px 18px;border-radius:99px;cursor:pointer;
+    border:1.5px solid var(--line);background:var(--card);color:var(--muted);
+    transition:.25s;font-family:var(--sans);flex:none;
+  }
+  .checkbtn:hover{border-color:var(--green);color:var(--green-deep)}
+  .checkbtn.done{background:var(--green);border-color:var(--green);color:var(--ink)}
+  .checkbtn.done::before{content:"✓ ";}
+
+  /* ===== 红线自查 ===== */
+  .redline{
+    background:var(--ink);color:#E8E8E4;border-radius:22px;padding:34px 30px;margin-top:40px;
+    position:relative;overflow:hidden;
+  }
+  .redline::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;
+    background:radial-gradient(circle, rgba(176,211,96,.22), transparent 70%);
+  }
+  .redline h3{font-family:var(--serif);font-size:22px;font-weight:800;color:#fff;margin-bottom:6px}
+  .redline .rs{font-size:13px;color:var(--green);margin-bottom:20px;font-weight:600}
+  .rl-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;z-index:1}
+  @media(max-width:760px){.rl-list{grid-template-columns:1fr}}
+  .rl{
+    display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.7;
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 14px;
+  }
+  .rl .x{color:#E08787;font-weight:800;flex:none}
+
+  /* ===== 下载速查 ===== */
+  .dlcard{
+    margin-top:40px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;box-shadow:var(--shadow);
+  }
+  .dlcard h3{font-family:var(--serif);font-size:20px;font-weight:800;margin-bottom:14px}
+  .dlrow{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px dashed rgba(26,26,26,.1)}
+  .dlrow:last-child{border-bottom:none}
+  .dlrow .ic{font-size:18px;flex:none;margin-top:2px}
+  .dlrow .tt{font-size:13.5px;font-weight:700;display:block}
+  .dlrow .pp{font-size:12.5px;color:var(--muted)}
+
+  /* ===== 页脚 ===== */
+  footer{margin-top:72px;background:var(--ink);color:#B9B9B2;padding:52px 20px 30px}
+  .foot-inner{max-width:1080px;margin:0 auto}
+  .foot-brand{font-family:var(--serif);font-size:19px;font-weight:800;color:#fff;margin-bottom:4px}
+  .foot-brand span{color:var(--green)}
+  .foot-slogan{font-size:14px;color:var(--green);margin-bottom:16px}
+  .foot-note{font-size:12.5px;line-height:1.9;margin-bottom:20px}
+  .foot-note b{color:#E8E8E4}
+  .foot-copy{font-size:12px;color:#777;border-top:1px solid rgba(255,255,255,.1);padding-top:16px}
+  .foot-copy .w{color:var(--blue);font-weight:600}
+
+  .backtop{
+    position:fixed;bottom:22px;right:22px;width:46px;height:46px;border-radius:50%;
+    background:var(--green);color:var(--ink);border:none;font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.3s;z-index:99;
+  }
+  .backtop.show{opacity:1;pointer-events:auto}
+  .backtop:hover{background:#c2e57e}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="dot"></span>会客厅物料进阶指南</div>
+    <nav class="topnav">
+      <a href="#map" class="active">学习地图</a>
+      <a href="#days">9 天路径</a>
+      <a href="#redline">红线自查</a>
+      <a href="#download">下载速查</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <span class="kicker">🌱 MeuAI 品宣赋能中心 · 新伙伴学习手册</span>
+    <h1>会客厅物料<br><span class="accent">进阶指南</span></h1>
+    <p class="sub">9 天，从「认识你」到「被信任」。每天一份物料，三步落地，跟着路径走，把会客厅的标准流程真正学进手里。</p>
+    <div class="path">
+      <span>📦 每天 1 份物料</span>
+      <span>🪜 三步落地法</span>
+      <span>📌 标准口径红线</span>
+      <span>✅ 学完可打卡</span>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-head">
+        <span class="t">📈 学习进度</span>
+        <span class="p" id="progress-num">0 / 9</span>
+      </div>
+      <div class="bar"><div class="bar-fill" id="progress-fill"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 学习地图 ================= -->
+<section class="map" id="map">
+  <div class="map-grid">
+    <div class="map-card">
+      <div class="stg" style="background:var(--green)"></div>
+      <span class="phase">PHASE 01</span>
+      <h4>个人账号</h4>
+      <p>先让顾客认识你——三件套、口播、朋友圈节奏</p>
+    </div>
+    <div class="map-card">
+      <div class="stg" style="background:var(--green-deep)"></div>
+      <span class="phase">PHASE 02</span>
+      <h4>认知</h4>
+      <p>把概念讲明白——5 张核心概念卡，讲得清才谈得下去</p>
+    </div>
+    <div class="map-card">
+      <div class="stg" style="background:var(--blue)"></div>
+      <span class="phase">PHASE 03</span>
+      <h4>吸引</h4>
+      <p>让泛人群愿意走近——对比图、短视频、场景卡牌</p>
+    </div>
+    <div class="map-card">
+      <div class="stg" style="background:var(--blue-deep)"></div>
+      <span class="phase">PHASE 04</span>
+      <h4>信任</h4>
+      <p>用真实与专业背书——证言、认证、FAQ、公司介绍</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 9 天路径 ================= -->
+<section class="block" id="days">
+  <div class="sec-head">
+    <span class="tag">9 天学习路径</span>
+    <h2>每天一份物料，三步落地</h2>
+    <p>按顺序学习即可；每完成一天就点「完成打卡」，进度自动保存。所有文案使用标准版内容，不自行添加价格、收益类表述。</p>
+  </div>
+
+  <div class="days">
+
+    <!-- Day 1 吸引① -->
+    <div class="day stg-attract" data-day="1">
+      <div class="day-top">
+        <span class="day-badge">DAY 1</span>
+        <span class="day-tag tag-attract">吸引篇 ①</span>
+      </div>
+      <h3 class="day-title">AI vs 传统电商对比图</h3>
+      <p class="day-desc">看懂对比图中的三代电商：🛒 传统货架 ｜ 📱 算法电商 ｜ 💬 AI 顾问式电商（Meu AI）</p>
+      <div class="steps">
+        <div class="step"><span class="sn">动作 1</span><span class="st">看懂对比图</span><span class="sd">理解三代电商的差异，记住 AI 顾问式电商（Meu AI）的位置</span></div>
+        <div class="step"><span class="sn">动作 2</span><span class="st">转发 1 个群</span><span class="sd">把对比图转发到 1 个群，观察朋友的第一反应</span></div>
+        <div class="step"><span class="sn">动作 3</span><span class="st">记下反馈</span><span class="sd">把大家的反应记下来，作为后续讲概念的素材</span></div>
+      </div>
+      <div class="day-foot">
+        <span class="quote">「一张图看懂三代电商」</span>
+        <button class="checkbtn" onclick="toggleDay(this,1)">完成打卡</button>
+      </div>
+    </div>
+
+    <!-- Day 2 个人账号 -->
+    <div class="day stg-account" data-day="2">
+      <div class="day-top">
+        <span class="day-badge">DAY 2</span>
+        <span class="day-tag tag-account">个人账号篇</span>
+      </div>
+      <h3 class="day-title">先让顾客认识你</h3>
+      <p class="day-desc">个人账号宣发包：「个人主页三件套 · 30 秒口播三版 · 朋友圈个人账号节奏」，三步落地执行。</p>
+      <div class="steps">
+        <div class="step"><span class="sn">第一步</span><span class="st">改起来 🎨</span><span class="sd">对照【个人主页三件套】，统一更换视频号头像、昵称、签名、封面</span></div>
+        <div class="step"><span class="sn">第二步</span><span class="st">发起来 🎬</span><span class="sd">【30 秒口播三版】照读拍摄发布至视频号，每周 1–2 条，先发朋友版或客户版均可</span></div>
+        <div class="step"><span class="sn">第三步</span><span class="st">跟节奏 📅</span><span class="sd">朋友圈一周五条：周一立威 / 周二AI钩 / 周三案例 / 周四种草 / 周五认知</span></div>
+      </div>
+      <div class="day-foot">
+        <span class="quote">「让别人记住你是谁」</span>
+        <button class="checkbtn" onclick="toggleDay(this,2)">完成打卡</button>
+      </div>
+    </div>
+
+    <!-- Day 3 认知 -->
+    <div class="day stg-cogni" data-day="3">
+      <div class="day-top">
+        <span class="day-badge">DAY 3</span>
+        <span class="day-tag tag-cogni">认知篇</span>
+      </div>
+      <h3 class="day-title">把概念讲明白 · 5 个核心概念</h3>
+      <p class="day-desc">第二批认知宣发包：「5 个核心概念」正式启用，请按三步落地执行。</p>
+      <div class="steps">
+        <div class="step"><span class="sn">第一步</span><span class="st">读起来 🧠</span><span class="sd">逐张读完 5 张核心概念卡，先建立整体印象，不用背，理解为准</span></div>
+        <div class="step"><span class="sn">第二步</span><span class="st">讲起来 🗣</span><span class="sd">合上卡片，用自己的话 30 秒讲清「什么是 AI 顾问式电商」</span></div>
+        <div class="step"><span class="sn">第三步</span><span class="st">发起来 📣</span><span class="sd">挑一张最有感觉的概念卡，发到朋友圈或一个群，配一句自己的理解</span></div>
+      </div>
+      <div class="warn"><b>📌 温馨提示：</b>概念讲解请使用标准版表述，不要自行添加价格、收益类内容；发布前对照自查清单过一遍。</div>
+      <div class="day-foot">
+        <span class="quote">「认知是沟通的地基，讲得清，才谈得下去」</span>
+        <button class="checkbtn" onclick="toggleDay(this,3)">完成打卡</button>
+      </div>
+    </div>
+
+    <!-- Day 4 吸引② -->
+    <div class="day stg-attract" data-day="4">
+      <div class="day-top">
+        <span class="day-badge">DAY 4</span>
+        <span class="day-tag tag-attract">吸引篇 ②</span>
+      </div>
+      <h3 class="day-title">照着脚本拍一条</h3>
+      <p class="day-desc">吸引篇第二件物料：「AI 顾问式电商科普系列短视频 — 拍摄脚本版」正式启用。</p>
+      <div class="steps">
+        <div class="step"><span class="sn">第一步</span><span class="st">读脚本 🎬</span><span class="sd">通读三集脚本，理解每集的分镜与口播，选一集最适合自己拍的</span></div>
+        <div class="step"><span class="sn">第二步</span><span class="st">照着拍 📱</span><span class="sd">按脚本自主拍摄一条，竖屏 9:16，不追求完美，先出片</span></div>
+        <div class="step"><span class="sn">第三步</span><span class="st">发出去 💬</span><span class="sd">发布到视频号或群，把拍摄中遇到的问题和反馈给品宣组</span></div>
+      </div>
+      <div class="warn"><b>📌 温馨提示：</b>本批为脚本版，可用于会客厅自主拍摄；官方标准版成片后续发布，发布后请对照标准版再优化一次。拍摄与配文请使用标准口径，不要自行添加价格、收益类表述。</div>
+      <div class="day-foot">
+        <span class="quote">「先拍出自己的版本，标准版来了再对齐」</span>
+        <button class="checkbtn" onclick="toggleDay(this,4)">完成打卡</button>
+      </div>
+    </div>
+
+    <!-- Day 5 吸引③ -->
+    <div class="day stg-attract" data-day="5">
+      <div class="day-top">
+        <span class="day-badge">DAY 5</span>
+        <span class="day-tag tag-attract">吸引篇 ③</span>
+      </div>
+      <h3 class="day-title">一张卡讲一个场景</h3>
+      <p class="day-desc">吸引篇第三件物料：「12 张能力场景合集卡牌」正式启用。</p>
+      <div class="steps">
+        <div class="step"><span class="sn">第一步</span><span class="st">过一遍 🃏</span><span class="sd">把 12 张卡过一遍，每张都能用一句话概括，不用记细节</span></div>
+        <div class="step"><span class="sn">第二步</span><span class="st">分好类 🗂</span><span class="sd">按顾客类型分拣，想清楚哪张卡给哪类人看，用的时候不慌</span></div>
+        <div class="step"><span class="sn">第三步</span><span class="st">发两张 📤</span><span class="sd">挑 2 张发给对应的顾客，观察回应</span></div>
+      </div>
+      <div class="warn"><b>📌 温馨提示：</b>卡牌描述的是能力与场景，不对结果作承诺；请勿自行添加价格、收益类表述。</div>
+      <div class="day-foot">
+        <span class="quote">「场景对了，需求就对了」</span>
+        <button class="checkbtn" onclick="toggleDay(this,5)">完成打卡</button>
+      </div>
+    </div>
+
+    <!-- Day 6 信任① -->
+    <div class="day stg-trust" data-day="6">
+      <div class="day-top">
+        <span class="day-badge">DAY 6</span>
+        <span class="day-tag tag-trust">信任篇 ①</span>
+      </div>
+      <h3 class="day-title">真实的声音</h3>
+      <p class="day-desc">信任篇第一批物料：「用户证言 · 媒体报道合集」正式启用。</p>
+      <div class="steps">
+        <div class="step"><span class="sn">第一步</span><span class="st">读一遍 📖</span><span class="sd">读完用户证言与媒体报道，记住每一条讲的是什么</span></div>
+        <div class="step"><span class="sn">第二步</span><span class="st">学口径 📰</span><span class="sd">掌握「消息来源」的正确转发口径，只做事实转述，不夸大为权威背书</span></div>
+        <div class="step"><span class="sn">第三步</span><span class="st">组合发 🤝</span><span class="sd">挑 1 条证言 + 1 条报道，组合转发一次，真实感更强</span></div>
+      </div>
+      <div class="warn"><b>📌 温馨提示：</b>媒体报道统一写「消息来源：XX」，未发生的报道不提；证言需为真实用户表述，不做加工修饰。</div>
+      <div class="day-foot">
+        <span class="quote">「真实的声音，是最有力的介绍」</span>
+        <button class="checkbtn" onclick="toggleDay(this,6)">完成打卡</button>
+      </div>
+    </div>
+
+    <!-- Day 7 信任② -->
+    <div class="day stg-trust" data-day="7">
+      <div class="day-top">
+        <span class="day-badge">DAY 7</span>
+        <span class="day-tag tag-trust">信任篇 ②</span>
+      </div>
+      <h3 class="day-title">稳稳的底气</h3>
+      <p class="day-desc">信任篇第二批物料：「获奖与认证 · 渠道伙伴」正式启用。</p>
+      <div class="steps">
+        <div class="step"><span class="sn">第一步</span><span class="st">记清楚 🏅</span><span class="sd">熟悉获奖与认证、渠道伙伴名单，哪些能讲、哪些要按住，心里有数</span></div>
+        <div class="step"><span class="sn">第二步</span><span class="st">分边界 📋</span><span class="sd">按官方发布口径理解，不自行扩大解释、不延伸暗示</span></div>
+        <div class="step"><span class="sn">第三步</span><span class="st">进话术 💼</span><span class="sd">整理进自己的接待话术，和证言、报道连成一条完整的信任链</span></div>
+      </div>
+      <div class="warn"><b>📌 温馨提示：</b>认证与渠道伙伴信息以官方发布为准，不写「品牌方」「官方合作伙伴」等表述；不要自行添加价格、收益类表述。</div>
+      <div class="day-foot">
+        <span class="quote">「专业与实力，会替你说话」</span>
+        <button class="checkbtn" onclick="toggleDay(this,7)">完成打卡</button>
+      </div>
+    </div>
+
+    <!-- Day 8 信任③ -->
+    <div class="day stg-trust" data-day="8">
+      <div class="day-top">
+        <span class="day-badge">DAY 8</span>
+        <span class="day-tag tag-trust">信任篇 ③</span>
+      </div>
+      <h3 class="day-title">把最常被问的答清楚</h3>
+      <p class="day-desc">信任篇第三件物料：「FAQ 答疑手册（20 问 20 答）」正式启用。</p>
+      <div class="steps">
+        <div class="step"><span class="sn">第一步</span><span class="st">读一遍 📖</span><span class="sd">通读 20 个高频问题，先记住客人最常问的那 5 个</span></div>
+        <div class="step"><span class="sn">第二步</span><span class="st">分场景用 🗣</span><span class="sd">手册标了使用边界——哪些可公开讲，哪些只适合一对一或转课程</span></div>
+        <div class="step"><span class="sn">第三步</span><span class="st">存到手边 📱</span><span class="sd">存进手机收藏，现场答疑随手就能翻</span></div>
+      </div>
+      <div class="warn"><b>📌 温馨提示：</b>涉及价格、权益的问题，只在课程与一对一讲解中说明，不在群里展开具体条款；答疑请用标准版表述，不自行改写。</div>
+      <div class="day-foot">
+        <span class="quote">「答得清楚，客人才敢接着问」</span>
+        <button class="checkbtn" onclick="toggleDay(this,8)">完成打卡</button>
+      </div>
+    </div>
+
+    <!-- Day 9 信任④ -->
+    <div class="day stg-trust" data-day="9">
+      <div class="day-top">
+        <span class="day-badge">DAY 9</span>
+        <span class="day-tag tag-trust">信任篇 ④</span>
+      </div>
+      <h3 class="day-title">三句话说清我们是谁</h3>
+      <p class="day-desc">节点日轻动作：信任篇第四件物料「公司介绍」发放，看完转发即可，今天不求多。</p>
+      <div class="steps">
+        <div class="step"><span class="sn">第一步</span><span class="st">看一遍 📖</span><span class="sd">了解公司背景与业务版图，练到能三句话说清「我们是谁」</span></div>
+        <div class="step"><span class="sn">第二步</span><span class="st">转一次 📲</span><span class="sd">转发一次公司介绍就算完成，做完收工，不占用其他安排</span></div>
+        <div class="step"><span class="sn">第三步</span><span class="st">记一句 💬</span><span class="sd">挑一句自己讲得顺的介绍话术，固定下来，以后反复用</span></div>
+      </div>
+      <div class="warn"><b>📌 温馨提示：</b>介绍内容以官方发布版本为准，不自行添加价格、收益类表述，也不写成「权威认证 / 官方背书」。</div>
+      <div class="day-foot">
+        <span class="quote">「把标准流程，沉淀成自己的底气」</span>
+        <button class="checkbtn" onclick="toggleDay(this,9)">完成打卡</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= 红线自查 ================= -->
+  <div class="redline" id="redline">
+    <h3>⛔ 发布红线 · 自查总览</h3>
+    <p class="rs">发布任何内容前逐条过一遍，任何一条打不上勾就先别发。</p>
+    <div class="rl-list">
+      <div class="rl"><span class="x">✕</span><span>所有文案使用标准版内容，不自行添加价格、收益类表述</span></div>
+      <div class="rl"><span class="x">✕</span><span>概念讲解使用标准版表述，不添加价格、收益内容</span></div>
+      <div class="rl"><span class="x">✕</span><span>拍摄与配文使用标准口径，不夸大为权威背书</span></div>
+      <div class="rl"><span class="x">✕</span><span>卡牌描述能力与场景，不对结果作承诺</span></div>
+      <div class="rl"><span class="x">✕</span><span>媒体报道统一写「消息来源：XX」，未发生的报道不提</span></div>
+      <div class="rl"><span class="x">✕</span><span>证言需为真实用户表述，不做加工修饰</span></div>
+      <div class="rl"><span class="x">✕</span><span>认证与渠道信息以官方发布为准，不写「品牌方 / 官方合作伙伴」</span></div>
+      <div class="rl"><span class="x">✕</span><span>价格、权益问题只在课程与一对一讲解中说明</span></div>
+      <div class="rl"><span class="x">✕</span><span>公司介绍不写成「权威认证 / 官方背书」</span></div>
+      <div class="rl"><span class="x">✕</span><span>不出现「治疗 / 治愈 / 根治 / 药效」及收益、分成、拉人头类表述</span></div>
+    </div>
+  </div>
+
+  <!-- ================= 下载速查 ================= -->
+  <div class="dlcard" id="download">
+    <h3>📦 物料下载速查</h3>
+    <div class="dlrow">
+      <span class="ic">🎨</span>
+      <div>
+        <span class="tt">设计文件 / 市场物料（设计源文件）</span>
+        <span class="pp">猫耳朵园地 → 每日更新 → 会客厅市场物料</span>
+      </div>
+    </div>
+    <div class="dlrow">
+      <span class="ic">📚</span>
+      <div>
+        <span class="tt">课程学习</span>
+        <span class="pp">猫耳朵园地 → 课程中心 → 4. 会客厅课程</span>
+      </div>
+    </div>
+    <div class="dlrow">
+      <span class="ic">📖</span>
+      <div>
+        <span class="tt">新人必读</span>
+        <span class="pp">前往【新人大礼包】阅读《会客厅-规范手册》，了解使用与下载方式；进入「会客厅市场物料」把常用物料收藏起来</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 页脚 ================= -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">会客厅物料 <span>进阶指南</span></div>
+    <div class="foot-slogan">在这里，让 AI 替你把健康生活过一遍。</div>
+    <div class="foot-note">
+      <b>出品</b>：MeuAI 品宣赋能中心 · 本页面为「会客厅计划」标准流程沉淀，内容以品宣组定稿为准<br>
+      <b>学习路径</b>：个人账号 → 认知 → 吸引 → 信任，9 天学完全套物料
+    </div>
+    <div class="foot-copy">
+      <span class="w">⚠ 温馨提示：所有文案请使用标准版内容，不自行添加价格、收益类表述；发布前对照红线自查过一遍。</span>
+    </div>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  /* ===== 打卡进度（localStorage） ===== */
+  const TOTAL = 9;
+  function loadProgress(){
+    const set = new Set();
+    for(let i=1;i<=TOTAL;i++){
+      if(localStorage.getItem('meumall-guide-day-'+i) === '1') set.add(i);
+    }
+    return set;
+  }
+  const doneSet = loadProgress();
+  function renderProgress(){
+    const num = document.getElementById('progress-num');
+    const fill = document.getElementById('progress-fill');
+    const n = doneSet.size;
+    num.textContent = n + ' / ' + TOTAL;
+    fill.style.width = (n/TOTAL*100) + '%';
+    document.querySelectorAll('.day').forEach(d=>{
+      const day = parseInt(d.dataset.day,10);
+      const btn = d.querySelector('.checkbtn');
+      if(doneSet.has(day)){
+        btn.classList.add('done');
+        btn.textContent = '已完成 ✓';
+      } else {
+        btn.classList.remove('done');
+        btn.textContent = '完成打卡';
+      }
+    });
+  }
+  function toggleDay(btn, day){
+    if(doneSet.has(day)){
+      doneSet.delete(day);
+      localStorage.setItem('meumall-guide-day-'+day, '0');
+    } else {
+      doneSet.add(day);
+      localStorage.setItem('meumall-guide-day-'+day, '1');
+    }
+    renderProgress();
+  }
+  renderProgress();
+
+  /* ===== 导航高亮 + 返回顶部 ===== */
+  const ids = ['map','days','redline','download'];
+  const links = document.querySelectorAll('.topnav a');
+  window.addEventListener('scroll', ()=>{
+    const y = window.scrollY + 120;
+    let cur = 'map';
+    ids.forEach(id=>{ const el = document.getElementById(id); if(el && el.offsetTop <= y) cur = id; });
+    links.forEach(l=>l.classList.toggle('active', l.getAttribute('href') === '#'+cur));
+    document.getElementById('backtop').classList.toggle('show', window.scrollY > 600);
+  }, {passive:true});
+</script>
+</body>
+</html>
