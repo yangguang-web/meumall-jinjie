@@ -57,13 +57,15 @@ p{margin:10px 0}
 strong{color:var(--brand-d)}
 
 /* 学习地图 */
-.map-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 8px}
-@media(max-width:760px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+.map-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:0 0 8px}
+@media(max-width:860px){.map-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.map-grid{grid-template-columns:1fr}}
 .map-card{background:var(--brand-bg);border:1px solid var(--brand-line);border-radius:12px;padding:16px;position:relative;overflow:hidden}
 .map-card .stg{position:absolute;top:0;left:0;right:0;height:4px;background:var(--brand)}
 .map-card .stg.c2{background:var(--brand-d)}
 .map-card .stg.c3{background:var(--brand-l)}
 .map-card .stg.c4{background:#8FBF6A}
+.map-card .stg.c5{background:#6BAF5A}
 .map-card .phase{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--ink-3);display:block;margin-bottom:6px}
 .map-card h4{font-size:15px;font-weight:700;color:var(--brand-d);margin-bottom:4px}
 .map-card p{font-size:12px;color:var(--ink-2);line-height:1.6;margin:0}
@@ -213,12 +215,13 @@ box-shadow:0 4px 16px rgba(79,122,42,.25);opacity:0;pointer-events:none;transiti
 <div class="wrap">
 
 <!-- ================= 学习地图 ================= -->
-<h2 id="map">一、学习地图：四个阶段</h2>
+<h2 id="map">一、学习地图：五个阶段</h2>
 <div class="map-grid">
   <div class="map-card"><div class="stg"></div><span class="phase">PHASE 01</span><h4>个人账号</h4><p>先让顾客认识你——三件套、口播、朋友圈节奏</p></div>
   <div class="map-card"><div class="stg c2"></div><span class="phase">PHASE 02</span><h4>认知</h4><p>把概念讲明白——5 张核心概念卡，讲得清才谈得下去</p></div>
   <div class="map-card"><div class="stg c3"></div><span class="phase">PHASE 03</span><h4>吸引</h4><p>让泛人群愿意走近——对比图、短视频、场景卡牌</p></div>
   <div class="map-card"><div class="stg c4"></div><span class="phase">PHASE 04</span><h4>信任</h4><p>用真实与专业背书——证言、认证、FAQ、公司介绍</p></div>
+  <div class="map-card"><div class="stg c5"></div><span class="phase">PHASE 05</span><h4>自生成</h4><p>动手做起来——海报、实景图、15 秒视频、开箱</p></div>
 </div>
 
 <!-- ================= 下载速查 ================= -->
@@ -232,7 +235,7 @@ box-shadow:0 4px 16px rgba(79,122,42,.25);opacity:0;pointer-events:none;transiti
 
 <!-- ================= 学习路径 ================= -->
 <h2 id="days">二、学习路径：每天一份物料，三步落地</h2>
-<p style="color:var(--ink-2);font-size:14px">按顺序学习即可；每完成一天就点「完成打卡」，进度自动保存。所有文案使用标准版内容，不自行添加价格、收益类表述。</p>
+<p style="color:var(--ink-2);font-size:14px">按顺序学习即可；每完成一天就点「完成打卡」。所有文案使用标准版内容，不自行添加价格、收益类表述。</p>
 
 <div class="learn-head">
   <img class="midoo-go" src="assets/midoo-go.png" alt="米多多加油">
@@ -298,17 +301,17 @@ box-shadow:0 4px 16px rgba(79,122,42,.25);opacity:0;pointer-events:none;transiti
   </div>
 
   <div class="day" data-day="4">
-    <div class="day-h"><span class="day-no">Day 4</span><span class="day-tag">吸引篇 ②</span><h3>照着脚本拍一条</h3><span class="date">读脚本 · 拍摄 · 发布</span></div>
+    <div class="day-h"><span class="day-no">Day 4</span><span class="day-tag">吸引篇 ②</span><h3>照着脚本拍一条</h3><span class="date">脚本 + 标准版成片均已上线</span></div>
     <div class="day-b">
-      <p class="day-desc">吸引篇第二件物料：「AI 顾问式电商科普系列短视频 — 拍摄脚本版」正式上线。</p>
+      <p class="day-desc">吸引篇第二件物料「AI 顾问式电商科普系列短视频」现已完整上线：官方标准版成片（3 集）+ 配套拍摄脚本（3 集），一份可以直接转、一份可以照着拍。</p>
       <div class="steps">
-        <div class="step"><span class="sn">第一步</span><span class="st">读脚本 🎬</span><span class="sd">通读三集脚本，理解每集的分镜与口播，选一集最适合自己拍的</span></div>
-        <div class="step"><span class="sn">第二步</span><span class="st">照着拍 📱</span><span class="sd">按脚本自主拍摄一条，竖屏 9:16，不追求完美，先出片</span></div>
-        <div class="step"><span class="sn">第三步</span><span class="st">发出去 💬</span><span class="sd">发布到视频号或群，把拍摄中遇到的问题和反馈给品宣组</span></div>
+        <div class="step"><span class="sn">第一步</span><span class="st">先看一遍 🎬</span><span class="sd">完整看一遍三集成片——①什么是 AI 顾问式电商 ②三代电商的差别 ③来会客厅怎么做 AI 电商 OPC；再翻一遍脚本，看懂分镜与口播</span></div>
+        <div class="step"><span class="sn">第二步</span><span class="st">直接转出去 📲</span><span class="sd">成片随原片转发到视频号或群，配文用标准口径，这一步人人都能做，先把曝光做起来</span></div>
+        <div class="step"><span class="sn">第三步</span><span class="st">有余力就拍一条 📱</span><span class="sd">想自己出镜的，按脚本拍一条竖屏 9:16，不追求完美，先出片</span></div>
       </div>
-      <div class="warn"><b>📌 温馨提示：</b>拍摄与配文请使用标准口径，不要自行添加价格、收益类表述。</div>
+      <div class="warn"><b>📌 温馨提示：</b>成片转发请随原片，不自行剪辑、配音或改字幕；自主拍摄请按脚本口径，不要添加价格、收益类表述；涉及健康的画面只讲使用场景，不做功效描述。</div>
       <div class="day-foot">
-        <span class="quote">「脚本已就位，照着拍出自己的版本」</span>
+        <span class="quote">「能转的先转，能拍的再拍——两条腿一起走」</span>
         <button class="checkbtn" onclick="toggleDay(this,4)">完成打卡</button>
       </div>
     </div>
@@ -399,6 +402,74 @@ box-shadow:0 4px 16px rgba(79,122,42,.25);opacity:0;pointer-events:none;transiti
     </div>
   </div>
 
+  <div class="day" data-day="10">
+    <div class="day-h"><span class="day-no">Day 10</span><span class="day-tag">自生成 ①</span><h3>四款海报挑一张，换上自己的码</h3><span class="date">空间海报系列 · 总部出模板</span></div>
+    <div class="day-b">
+      <p class="day-desc">自生成物料第一件：「空间海报系列」（总部出模板 4 款，各厅自己出图）——来坐坐 / 来体验 / 来归属 / 来机会，底部二维码 + 地址留空，各厅自填。</p>
+      <div class="steps">
+        <div class="step"><span class="sn">第一步</span><span class="st">选一张 🖼</span><span class="sd">四款模板按邀约对象分开，挑一张最贴自己厅的——来坐坐 / 来体验 / 来归属 / 来机会</span></div>
+        <div class="step"><span class="sn">第二步</span><span class="st">换上自己的 📌</span><span class="sd">把海报底部信息卡换成自己的二维码、地址与开放时间；二维码只放加好友码，不要放收款码</span></div>
+        <div class="step"><span class="sn">第三步</span><span class="st">发出去 📲</span><span class="sd">发朋友圈或一个群，看看有没有人来问，反馈记下来</span></div>
+      </div>
+      <div class="warn"><b>📌 温馨提示：</b>海报只写行为与场景描述，不出现价格、权益、收益类内容；地址与开放时间请按实际情况填写。</div>
+      <div class="day-foot">
+        <span class="quote">「先发出去，比做得完美更重要」</span>
+        <button class="checkbtn" onclick="toggleDay(this,10)">完成打卡</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="day" data-day="11">
+    <div class="day-h"><span class="day-no">Day 11</span><span class="day-tag">自生成 ②</span><h3>先把自家空间的素材拍出来</h3><span class="date">实景图 · 拍摄清单与机位指南</span></div>
+    <div class="day-b">
+      <p class="day-desc">自生成物料第二件：「MeuMall 会客厅实景图 · 拍摄清单与机位指南」——空间六张 + 米多多三张，机位与角度都写成手机可执行的数字。</p>
+      <div class="steps">
+        <div class="step"><span class="sn">第一步</span><span class="st">拍六张 📷</span><span class="sd">按清单拍空间六张——门头、展区、沙发区、茶水区、洽谈区、形象墙，机位和角度都写好了，照着拍即可</span></div>
+        <div class="step"><span class="sn">第二步</span><span class="st">带上米多多 🐱</span><span class="sd">再拍三张米多多元素（立牌、周边、场景合影），画面里有人气，看着更真实</span></div>
+        <div class="step"><span class="sn">第三步</span><span class="st">建素材库 📁</span><span class="sd">按命名规范归档，以后做海报、拍视频、发朋友圈都能直接调用</span></div>
+      </div>
+      <div class="warn"><b>📌 温馨提示：</b>拍摄时避免拍到价格标签、收款码；有顾客入镜请先征得同意。</div>
+      <div class="day-foot">
+        <span class="quote">「素材备齐了，后面做什么都不慌」</span>
+        <button class="checkbtn" onclick="toggleDay(this,11)">完成打卡</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="day" data-day="12">
+    <div class="day-h"><span class="day-no">Day 12</span><span class="day-tag">自生成 ③</span><h3>用拍好的素材剪 15 秒</h3><span class="date">15 秒实拍视频脚本模板</span></div>
+    <div class="day-b">
+      <p class="day-desc">自生成物料第三件：「15 秒实拍视频脚本模板」——五个镜头的时间轴（门头 → 空间 → 展区 → 米多多 → 形象墙定格），竖屏 9:16。</p>
+      <div class="steps">
+        <div class="step"><span class="sn">第一步</span><span class="st">读脚本 🎬</span><span class="sd">通读一遍模板，看清 15 秒里五个镜头的顺序，心里先过一遍分镜</span></div>
+        <div class="step"><span class="sn">第二步</span><span class="st">照着拍 📱</span><span class="sd">用昨天拍好的实景素材，竖屏 9:16 拍一条，控制在 15 秒以内</span></div>
+        <div class="step"><span class="sn">第三步</span><span class="st">发一条 📲</span><span class="sd">发布并记一下数据（播放、点赞、来问的人），先出片，不追完美</span></div>
+      </div>
+      <div class="warn"><b>📌 温馨提示：</b>发布请使用标准版内容，不自行添加价格、收益类表述；出镜人员请提前确认。</div>
+      <div class="day-foot">
+        <span class="quote">「十五秒讲清一件事，比一分钟讲不清强」</span>
+        <button class="checkbtn" onclick="toggleDay(this,12)">完成打卡</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="day" data-day="13">
+    <div class="day-h"><span class="day-no">Day 13</span><span class="day-tag">自生成 ④</span><h3>一条开箱，本批收官</h3><span class="date">开箱视频系列脚本模板</span></div>
+    <div class="day-b">
+      <p class="day-desc">自生成物料最后一件：「开箱视频系列脚本模板」——30 秒开箱脚本，含开箱动作、展示要点与口播提示，本批物料今天全部发完。</p>
+      <div class="steps">
+        <div class="step"><span class="sn">第一步</span><span class="st">读脚本 🎬</span><span class="sd">通读模板，选一件自己最适合作开箱的商品，照着脚本走一遍</span></div>
+        <div class="step"><span class="sn">第二步</span><span class="st">拍一条 📦</span><span class="sd">按脚本拍一条 30 秒开箱，先拍最顺的那件，不用一次就完美</span></div>
+        <div class="step"><span class="sn">第三步</span><span class="st">收个尾 🏁</span><span class="sd">把本批物料过一遍，挑 1–2 件当自己的主打，后面内容围绕它来做</span></div>
+      </div>
+      <div class="warn"><b>📌 温馨提示：</b>开箱画面不报价格、不带购买链接；涉及健康类商品只讲使用场景与适合人群，不做功效描述。</div>
+      <div class="day-foot">
+        <span class="quote">「这一批就到这里，用起来才算学会」</span>
+        <button class="checkbtn" onclick="toggleDay(this,13)">完成打卡</button>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- ================= 红线自查 ================= -->
@@ -415,7 +486,7 @@ box-shadow:0 4px 16px rgba(79,122,42,.25);opacity:0;pointer-events:none;transiti
     <div class="rl"><span class="x">✕</span><span>认证与渠道信息以官方发布为准，不写「品牌方 / 官方合作伙伴」</span></div>
     <div class="rl"><span class="x">✕</span><span>价格、权益问题只在课程与一对一讲解中说明</span></div>
     <div class="rl"><span class="x">✕</span><span>公司介绍不写成「权威认证 / 官方背书」</span></div>
-    <div class="rl"><span class="x">✕</span><span>不出现「治疗 / 治愈 / 根治 / 药效」及收益、分成、拉人头类表述</span></div>
+    <div class="rl"><span class="x">✕</span><span>不出现「治疗 / 治愈 / 根治 / 药效」及收益等表述</span></div>
   </div>
 </div>
 
@@ -423,7 +494,7 @@ box-shadow:0 4px 16px rgba(79,122,42,.25);opacity:0;pointer-events:none;transiti
 <div class="foot">
   <div class="fb">会客厅物料 · 进阶指南</div>
   出品：Meu AI 品宣组 · 内容以品宣组定稿为准<br>
-  学习路径：个人账号 → 认知 → 吸引 → 信任，跟着物料一步步进阶<br>
+  学习路径：个人账号 → 认知 → 吸引 → 信任 → 自生成，跟着物料一步步进阶<br>
   <span class="w">⚠ 温馨提示：所有文案请使用标准版内容，不自行添加价格、收益类表述；发布前对照红线自查过一遍。</span>
 </div>
 
